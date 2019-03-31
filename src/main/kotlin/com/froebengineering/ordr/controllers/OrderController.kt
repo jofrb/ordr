@@ -30,7 +30,7 @@ class OrderController @Autowired constructor(
   }
   
   // Would have used Spring security with more time
-  @PatchMapping("/{/id}")
+  @PatchMapping("/{id}")
   fun update(
       @PathVariable id: Long,
       @RequestParam(required = false) numberOfPens: Int? = 0,
