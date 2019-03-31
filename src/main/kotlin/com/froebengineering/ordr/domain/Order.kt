@@ -5,6 +5,7 @@ import javax.persistence.*
 const val FREE_BIKE_LIMIT: Float = 100000F
 
 @Entity
+@Table(name = "order_table")
 data class Order(
     
     @Id
@@ -15,7 +16,7 @@ data class Order(
     var customerType: CustomerType,
     
     // Would rather find out if map is possible to implement
-    @OneToMany
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
     val rows: MutableList<OrderRow> = mutableListOf(),
     
     @Column(name = "price_sum")
@@ -68,6 +69,6 @@ data class Order(
   private fun updateFreeBike() {
     if (priceSum - discountSum >= FREE_BIKE_LIMIT) {
       if (!rows.map { it.item }.contains(Item.BIKE)) rows.add(OrderRow(numberOfItems = 1, item = Item.BIKE)) // Only adds without updating
-    } else rows.firstOrNull{it.item == Item.BIKE}?.let { this.rows.remove(it) } //Only removes without updating
+    } else rows.firstOrNull { it.item == Item.BIKE }?.let { this.rows.remove(it) } //Only removes without updating
   }
 }

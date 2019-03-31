@@ -10,6 +10,7 @@ enum class CustomerType {
 }
 
 @Entity
+@Table(name = "customer")
 data class Customer(
     @Column(name = "name")
     val name: String,

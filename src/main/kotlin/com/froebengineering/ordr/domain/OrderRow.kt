@@ -15,6 +15,7 @@ enum class Item(val price: Float) {
 }
 
 @Entity
+@Table(name = "order_row")
 data class OrderRow(
     
     @Id

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @Suppress("unused")
 @RestController
-@RequestMapping(value = ["/customer"], produces = [(MediaType.APPLICATION_JSON_VALUE)])
+@RequestMapping(value = ["/customer"])
 class CustomerController @Autowired constructor(val customerRepository: CustomerRepository) {
 
   @PostMapping("/")
