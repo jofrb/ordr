@@ -2,7 +2,7 @@ package com.froebengineering.ordr.domain
 
 import javax.persistence.*
 
-const val FREE_BIKE_LIMIT: Float = 100000F
+const val FREE_BIKE_LIMIT: Float = 10000F
 
 @Entity
 @Table(name = "order_table")
@@ -20,10 +20,10 @@ data class Order(
     val rows: MutableList<OrderRow> = mutableListOf(),
     
     @Column(name = "price_sum")
-    private var priceSum: Float = 0F,
+    var priceSum: Float = 0F,
     
     @Column(name = "discount_sum")
-    private var discountSum: Float = 0F
+    var discountSum: Float = 0F
 
 ) {
   
@@ -37,7 +37,7 @@ data class Order(
   }
   
   private fun addRow(item: Item, number: Int) {
-    rows.add(OrderRow(item = item, numberOfItems = number))
+    rows.add(OrderRow(item = item, numberOfItems = number).apply { refreshLine(customerType) })
     refreshOrder()
   }
   

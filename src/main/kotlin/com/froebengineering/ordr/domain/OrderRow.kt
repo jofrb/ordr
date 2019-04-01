@@ -32,13 +32,14 @@ data class OrderRow(
     var discountSum: Float = 0F
 
 ) {
+
   
   fun updateNumberOfItems(numberOfItems: Int, type: CustomerType){
     this.numberOfItems = numberOfItems
     refreshLine(type)
   }
   
-  private fun refreshLine(customerType: CustomerType) {
+  fun refreshLine(customerType: CustomerType) {
     calculatePrice()
     calculateDiscount(customerType)
   }
