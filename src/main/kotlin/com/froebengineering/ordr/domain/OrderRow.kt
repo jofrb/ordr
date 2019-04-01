@@ -52,7 +52,7 @@ data class OrderRow(
     // Could have done is not but don't know if more categories will be added in future
     discountSum = when (customerType) {
       CustomerType.LARGE ->
-        priceSum * if (item == Item.PAPER || item == Item.PAPER) LARGE_CORPORATE_DISCOUNT else CORPORATE_DISCOUNT
+        priceSum * if (item == Item.PEN || item == Item.PAPER) LARGE_CORPORATE_DISCOUNT else CORPORATE_DISCOUNT
       CustomerType.SMALL -> priceSum * CORPORATE_DISCOUNT
       else -> 0F
     }
